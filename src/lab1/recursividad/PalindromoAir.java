@@ -78,11 +78,45 @@ public class PalindromoAir {
     
     
     //4,5,6
+    public static boolean hayPasajeros=false;
+    public void printPassengers(int index){
+        if (index==0) {
+            hayPasajeros=false;
+        }
+        if (index==asientos.length) {
+            if (hayPasajeros==false) {
+                System.out.println("Sin pasajeros registrados.");
+            }
+            return;
+        }
+        if (asientos[index]!=null) {
+            hayPasajeros=true;
+            Ticket t=asientos[index];
+            System.out.println("Nombre: "+t.getNombre());
+            System.out.println("Monto pagado: "+t.getMontoPagado());
+            System.out.println("Monto original: "+t.getMontoOriginal());
+            System.out.println("Es palindromo: "+t.isEsPalindromo());
+        }
+        printPassengers(index +1);    
+    }
     
+    public double income(int index){
+        if (index==asientos.length) {
+            return 0;
+        }
+        if (asientos[index]!= null) {
+            return asientos[index].getMontoPagado()+income(index+1);
+        }
+        return income(index+1);
+    }
     
-    
-    
-    
+    public void reset(int index){
+        if (index==asientos.length) {
+            return; 
+        }
+        asientos[index]=null;
+        reset(index+1);
+    }
     
     //7,8,9
     public boolean sellTicket(String nombre){
