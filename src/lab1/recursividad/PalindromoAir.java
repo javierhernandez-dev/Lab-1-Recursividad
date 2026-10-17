@@ -21,9 +21,60 @@ public class PalindromoAir {
     
     // 1,23
     
+    public int firstAvailable(int index){
+        if (index >= capacidad_Asientos){
+           return -1;
+         }
+      if(asientos[index]==null){
+         return index;
+    }
+        return firstAvailable(index+1);
+    }
     
     
+    public int searchPassenger(String name, int index){
+      String nombre_Actual, nombre_Buscado;
+     if(index>=capacidad_Asientos){
+       return -1;
+     }
+     
+     if(asientos[index] != null){
+       nombre_Buscado=name.toLowerCase().replaceAll("[^a-z0-9^]", "");
+       nombre_Actual = asientos[index].getNombre().toLowerCase().replaceAll("[^a-z0-9]", "");
+         if (nombre_Buscado.equals(nombre_Actual)) {
+             return index; // Aqui es encontrado el pasajero
+         }
+     }
+     return searchPassenger(name, index+1);
+    }
     
+    public boolean isPalindromo(String name){
+        String nombreLimpio;
+         if(name==null){
+           return false;
+         }
+         
+    
+        nombreLimpio = name.toLowerCase().replaceAll("[áàäâ]", "a").replaceAll("[éèëê]", "e").replaceAll("[íìïî]", "i").replaceAll("[óòöô]", "o").replaceAll("[úùüû]", "u").replaceAll("[^a-z0-9^]", "");
+         
+         if(nombreLimpio.isEmpty()){
+            return false;
+          }
+         
+         if ( nombreLimpio.length()==1) {
+            return true;
+        }
+         
+         if (nombreLimpio.length()==2){
+         return  nombreLimpio.charAt(0)== nombreLimpio.charAt(1);
+       }
+         
+         if(nombreLimpio.charAt(0) !=  nombreLimpio.charAt( nombreLimpio.length()-1)){
+          return false;
+         }
+         
+         return isPalindromo(nombreLimpio.substring(1,nombreLimpio.length()-1));
+    }
     
     
     //4,5,6
@@ -38,6 +89,7 @@ public class PalindromoAir {
         
     }
     
+
     public boolean cancelTicket(String nombre){
         
     }
@@ -48,4 +100,5 @@ public class PalindromoAir {
         
         return totalIngresos;
     }
+
 }
