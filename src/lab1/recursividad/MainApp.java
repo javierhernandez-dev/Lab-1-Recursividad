@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package lab1.recursividad;
+
+import javax.swing.JOptionPane;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -71,7 +73,8 @@ public class MainApp extends javax.swing.JFrame {
             botonesAsientos[i].addActionListener(new ActionListener(){
                @Override
                public void actionPerformed(ActionEvent e){
-                  
+                  JOptionPane.showMessageDialog(null,"Clic en el asiento: "+codigoAsiento, 
+                        "Detalle de Asiento", JOptionPane.INFORMATION_MESSAGE);
                }
             
             });
@@ -80,6 +83,84 @@ public class MainApp extends javax.swing.JFrame {
         add(panelCentro, BorderLayout.CENTER);
         
         
+        //Panel Derecho
+        JPanel panelDerecho = new JPanel();
+        panelDerecho.setLayout(new GridLayout(8,1,5,5));
+        
+        panelDerecho.add(new JLabel("Nombre del Pasajero:"));
+        txtNombre = new JTextField(15);
+        panelDerecho.add(txtNombre);
+        
+        JButton btnVender = new JButton("Sell Ticket");
+        JButton btnCancelar = new JButton("Cancel Ticket");
+        JButton btnBuscar = new JButton("Search Passenger");
+        JButton btnImprimir = new JButton("Print Passengers");
+        JButton btnIngresos = new JButton("View Income");
+        JButton btnDespachar = new JButton("Dispatch");
+        
+        panelDerecho.add(btnVender);
+        panelDerecho.add(btnCancelar);
+        panelDerecho.add(btnBuscar);
+        panelDerecho.add(btnImprimir);
+        panelDerecho.add(btnIngresos);
+        panelDerecho.add(btnDespachar);
+        
+        add(panelDerecho, BorderLayout.EAST);
+        
+        //Acciones de los botones
+        btnVender.addActionListener(new ActionListener(){
+           @Override
+           public void actionPerformed(ActionEvent e){
+               String nombre = txtNombre.getText();
+               JOptionPane.showMessageDialog(null,"Intentando vender a: " + nombre,
+                    "Venta", JOptionPane.INFORMATION_MESSAGE);
+               txtNombre.setText("");
+           }
+        });
+        
+        btnCancelar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String nombre = txtNombre.getText();
+                JOptionPane.showMessageDialog(null, "Intentando cancelar a: "+nombre, 
+                        "Cancelacion", JOptionPane.INFORMATION_MESSAGE);
+                txtNombre.setText("");
+            }
+        });
+        
+        btnBuscar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String nombre = txtNombre.getText();
+                JOptionPane.showMessageDialog(null, "Buscando pasajero: "+ nombre,
+                        "Busqueda", JOptionPane.INFORMATION_MESSAGE);
+                txtNombre.setText("");
+            }
+        });
+        
+        btnImprimir.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JOptionPane.showMessageDialog(null, "Imprimiendo Lista de pasajeros...",
+                        "Lista", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        
+        btnIngresos.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JOptionPane.showMessageDialog(null, "Consultando ingresos...",
+                        "Ingresos", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        
+        btnDespachar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JOptionPane.showMessageDialog(null,"Vuelo despachado.",
+                        "Despacho", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
     }
 
     /**
