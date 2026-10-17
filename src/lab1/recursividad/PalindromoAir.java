@@ -34,5 +34,18 @@ public class PalindromoAir {
     
     
     //7,8,9
+    public boolean sellTicket(String nombre){
+        
+    }
     
+    public boolean cancelTicket(String nombre){
+        
+    }
+    public double dispatch(){
+        double totalIngresos = income(0);
+        
+        reset(0);
+        
+        return totalIngresos;
+    }
 }

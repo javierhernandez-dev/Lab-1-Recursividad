@@ -4,18 +4,82 @@
  * and open the template in the editor.
  */
 package lab1.recursividad;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author segio
  */
 public class MainApp extends javax.swing.JFrame {
-
+    
+    private PalindromoAir avion;
+    
+    private JTextField txtNombre;
+    private JTextArea txtConsola;
+    private JButton[] botonesAsientos;
+    
+    private JLabel lblDisponibles;
+    private JLabel lblOcupados;
+    private JLabel lblPalindromos;
+    private JLabel lblIngresos;
+    
     /**
      * Creates new form MainApp
      */
     public MainApp() {
         initComponents();
+        
+        avion = new PalindromoAir();
+        
+        setTitle("PalindromoAir - Sistema de venta de boletos");
+        setSize(850, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout(10,10));
+        
+        //Panel Arriba
+        JPanel panelArriba = new JPanel();
+        panelArriba.setLayout(new FlowLayout());
+        
+        lblDisponibles = new JLabel("Disponibles: 30  |  ");
+        lblOcupados = new JLabel("Ocupados: 0  |  ");
+        lblIngresos = new JLabel("Ingresos: $0.00");
+        
+        panelArriba.add(lblDisponibles);
+        panelArriba.add(lblOcupados);
+        panelArriba.add(lblIngresos);
+        
+        add(panelArriba, BorderLayout.NORTH);
+        
+        //Panel Central
+        JPanel panelCentro = new JPanel();
+        panelCentro.setLayout(new GridLayout(5,6,5,5));
+        botonesAsientos = new JButton[30];
+        char [] filas = {'A','B','C','D','E'};
+        
+        for (int i = 0; i < 30; i++) {
+            char letraFila = filas[i/6];
+            int columna = (i%6)+1;
+            String codigoAsiento = ""+letraFila+columna;
+            botonesAsientos[i]= new JButton(codigoAsiento);
+            botonesAsientos[i].setBackground(Color.GREEN);
+            
+            final int indice = i;
+            botonesAsientos[i].addActionListener(new ActionListener(){
+               @Override
+               public void actionPerformed(ActionEvent e){
+                  
+               }
+            
+            });
+            panelCentro.add(botonesAsientos[i]);
+        }
+        add(panelCentro, BorderLayout.CENTER);
+        
+        
     }
 
     /**
